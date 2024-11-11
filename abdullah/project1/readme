@@ -1,0 +1,33 @@
+Steps to Run:
+
+----------------------------------------
+Run the ABC synthesis script:
+----------------------------------------
+bash
+Copy code
+./run_abc_flow.sh /path/to/circuit.blif
+
+----------------------------------------
+Run the Python script for logic locking:
+----------------------------------------
+bash
+Copy code
+python add_logic_locking.py run_abc/circuit_before_clp.th 4
+
+----------------------------------------
+Run the verification script:
+----------------------------------------
+bash
+Copy code
+./verify_locked_circuit.sh run_abc
+
+----------------------------------------
+**Explanation:
+
+run_abc_flow.sh generates .th files and the compTH files required for verification.
+
+add_logic_locking.py modifies the .th file by adding key inputs, creating a locked version.
+
+verify_locked_circuit.sh verifies the locked circuit against the original using ABC and MiniSat tools.
+
+These scripts can be run independently to modularize the entire process, making it easier to manage and extend each step.
